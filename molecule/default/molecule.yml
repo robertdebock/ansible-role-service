@@ -1,0 +1,59 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: service-alpine-edge
+    image: alpine:edge
+    command: sh -c "while true ; do sleep 1 ; done"
+  - name: service-alpine-latest
+    image: alpine:latest
+    command: sh -c "while true ; do sleep 1 ; done"
+  - name: service-archlinux
+    image: archlinux/base
+  - name: service-centos-6
+    image: centos:6
+  - name: service-centos-latest
+    image: centos:latest
+  - name: service-debian-latest
+    image: debian:latest
+  - name: service-debian-stable
+    image: debian:stable
+  - name: service-debian-unstable
+    image: debian:unstable
+  - name: service-fedora-latest
+    image: fedora:latest
+  - name: service-fedora-rawhide
+    image: fedora:rawhide
+  - name: service-opensuse-leap
+    image: opensuse:leap
+  - name: service-opensuse-tumbleweed
+    image: opensuse:tumbleweed
+  - name: service-ubuntu-latest
+    image: ubuntu:latest
+  - name: service-ubuntu-rolling
+    image: ubuntu:artful
+  - name: service-ubuntu-devel
+    image: ubuntu:devel
+provisioner:
+  name: ansible
+  inventory:
+    group_vars:
+      all:
+        service_ignore_docker: no
+    host_vars:
+      service-fedora-rawhide:
+        ansible_python_interpreter: /usr/bin/python3
+  lint:
+    name: ansible-lint
+scenario:
+  name: default
+verifier:
+  name: goss
+  lint:
+    name: yamllint

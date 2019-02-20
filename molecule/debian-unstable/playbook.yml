@@ -1,0 +1,24 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: no
+  become: yes
+  serial: 30%
+
+  vars:
+    service_list:
+      - name: simple-service
+        description: Simple Service
+        start_script: sleep 3600
+      - name: forking-service
+        description: Forking Service
+        type: forking
+        start_script: "sleep 7200 &"
+      - name: specific-stop-service
+        description: Specific Stop Service
+        start_script: sleep 14400
+        stop_script: killall -f "sleep 1440"
+
+  roles:
+    - role: robertdebock.bootstrap
+    - role: ansible-role-service

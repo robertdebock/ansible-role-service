@@ -1,0 +1,42 @@
+---
+# tasks file for service
+- name: test veriables and environment
+  assert:
+    that:
+      - service_package_state is defined
+      - service_package_state == "present" or
+        service_package_state == "latest" or
+        service_package_state == "absent"
+      - service_ignore_docker is defined
+      - service_ignore_docker or
+        not service_ignore_docker
+      - service_list is defined
+
+- name: test service_list
+  assert:
+    that:
+      - item.name is defined
+      - item.description is defined
+      - item.start_command is defined
+  with_items:
+    - "{{ service_list }}"
+
+- name: configure systemd service
+  template:
+    src: "systemd.j2"
+    dest: "/etc/systemd/system/{{ item.name }}.service"
+  when:
+    - ansible_service_mgr == "systemd"
+  notify:
+    - systemctl daemon-reload
+  with_items:
+    - "{{ service_list }}"
+
+- name: configure sysvinit service
+  template:
+    src: "sysvinit.j2"
+    dest: "/etc/init.d/{{ item.name }}"
+  when:
+    - ansible_service_mgr == "sysvinit"
+  with_items:
+    - "{{ service_list }}"
