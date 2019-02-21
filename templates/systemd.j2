@@ -7,6 +7,9 @@ Description={{ item.description }}
 {% if item.type != "simple" %}
 Type={{ item.type }}
 {% endif %}
+{% if item.workingdirectory is defined %}
+WorkingDirectory={{ item.workingdirectory }}
+{% endif %}
 {% endif %}
 {% if item.username is defined %}
 User={{ item.username }}

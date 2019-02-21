@@ -21,15 +21,19 @@ This example is taken from `molecule/default/playbook.yml`:
     service_list:
       - name: simple-service
         description: Simple Service
-        start_script: sleep 3600
+        start_command: sleep 3600
       - name: forking-service
         description: Forking Service
         type: forking
-        start_script: "sleep 7200 &"
+        start_command: "sleep 7200 &"
       - name: specific-stop-service
         description: Specific Stop Service
-        start_script: sleep 14400
-        stop_script: killall -f "sleep 1440"
+        start_command: sleep 14400
+        stop_command: killall -f "sleep 1440"
+      - name: specific-workingdirectory-service
+        description: Specific WorkingDirectory Service
+        start_command: sleep 28800
+        workingdirectory: /tmp
 
   roles:
     - role: robertdebock.bootstrap

@@ -5,3 +5,12 @@
     daemon_reload: yes
   when:
     - ansible_virtualization_type != "docker" or service_ignore_docker
+
+- name: restart service
+  service:
+    name: "{{ item.name }}"
+    state: restarted
+  with_items:
+    - "{{ service_list }}"
+  when:
+    - ansible_virtualization_type != "docker" or service_ignore_docker

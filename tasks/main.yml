@@ -42,3 +42,8 @@
       ansible_service_mgr == "upstart"
   with_items:
     - "{{ service_list }}"
+  notify:
+    - restart service
+
+- name: flush handlers
+  meta: flush_handlers

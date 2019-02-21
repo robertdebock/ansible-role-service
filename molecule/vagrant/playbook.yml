@@ -18,6 +18,10 @@
         description: Specific Stop Service
         start_command: sleep 14400
         stop_command: killall -f "sleep 1440"
+      - name: specific-workingdirectory-service
+        description: Specific WorkingDirectory Service
+        start_command: sleep 28800
+        workingdirectory: /tmp
 
   roles:
     - role: robertdebock.bootstrap
