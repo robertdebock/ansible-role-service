@@ -36,7 +36,9 @@
   template:
     src: "sysvinit.j2"
     dest: "/etc/init.d/{{ item.name }}"
+    mode: "0750"
   when:
-    - ansible_service_mgr == "sysvinit"
+    - ansible_service_mgr == "sysvinit" or
+    - ansible_service_mgr == "upstart"
   with_items:
     - "{{ service_list }}"
