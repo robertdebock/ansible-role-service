@@ -33,7 +33,7 @@ This example is taken from `molecule/default/playbook.yml`:
       - name: specific-workingdirectory-service
         description: Specific WorkingDirectory Service
         start_command: sleep 28800
-        workingdirectory: /tmp
+        working_directory: /tmp
 
   roles:
     - role: robertdebock.bootstrap
