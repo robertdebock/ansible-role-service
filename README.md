@@ -55,9 +55,6 @@ These variables are set in `defaults/main.yml`:
 ---
 # defaults file for service
 
-# To update packages this role places on the system, set `service_package_state` to `latest`.
-service_package_state: present
-
 # Some Docker containers do not allow managing services, rebooting and writing
 # to some locations in /etc. The role skips tasks that will typically fail in
 # Docker. With this parameter you can tell the role to -not- skip these tasks.

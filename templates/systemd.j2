@@ -3,13 +3,11 @@
 Description={{ item.description }}
 
 [Service]
-{% if item.type is defined %}
-{% if item.type != "simple" %}
+{% if item.type is defined and item.type != "simple" %}
 Type={{ item.type }}
 {% endif %}
 {% if item.working_directory is defined %}
 WorkingDirectory={{ item.working_directory }}
-{% endif %}
 {% endif %}
 {% if item.user_name is defined %}
 User={{ item.user_name }}

@@ -3,10 +3,6 @@
 - name: test veriables and environment
   assert:
     that:
-      - service_package_state is defined
-      - service_package_state == "present" or
-        service_package_state == "latest" or
-        service_package_state == "absent"
       - service_ignore_docker is defined
       - service_ignore_docker or
         not service_ignore_docker
@@ -31,6 +27,8 @@
     - systemctl daemon-reload
   with_items:
     - "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: configure sysvinit service
   template:
@@ -44,6 +42,8 @@
     - "{{ service_list }}"
   notify:
     - restart service
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: flush handlers
   meta: flush_handlers
