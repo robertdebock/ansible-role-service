@@ -11,11 +11,11 @@ Type={{ item.type }}
 WorkingDirectory={{ item.working_directory }}
 {% endif %}
 {% endif %}
-{% if item.username is defined %}
-User={{ item.username }}
+{% if item.user_name is defined %}
+User={{ item.user_name }}
 {% endif %}
-{% if item.groupname is defined %}
-Group={{ item.groupname }}
+{% if item.group_name is defined %}
+Group={{ item.group_name }}
 {% endif %}
 ExecStart={{ item.start_command }}
 {% if item.stop_command is defined %}
