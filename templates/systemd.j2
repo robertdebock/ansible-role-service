@@ -3,8 +3,10 @@
 Description={{ item.description }}
 
 [Service]
+{% if item.type is defined %}
 {% if item.type != "simple" %}
 Type={{ item.type }}
+{% endif %}
 {% endif %}
 {% if item.username is defined %}
 User={{ item.username }}
