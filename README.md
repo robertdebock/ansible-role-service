@@ -30,10 +30,14 @@ This example is taken from `molecule/default/playbook.yml`:
         description: Specific Stop Service
         start_command: sleep 14400
         stop_command: killall -f "sleep 1440"
+      - name: specific-user-group-service
+        description: Specific User Group Service
+        start_command: sleep 28800
       - name: specific-workingdirectory-service
         description: Specific WorkingDirectory Service
-        start_command: sleep 28800
-        working_directory: /tmp
+        start_command: sleep 57600
+        user_name: root
+        group_name: root
 
   roles:
     - role: robertdebock.bootstrap
