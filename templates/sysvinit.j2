@@ -44,7 +44,7 @@ case "$1" in
     stop
   ;;
   status)
-    echo "not supported."
+    status {{ item.start_comand }} > /dev/null 2>&1 || echo "not supported."
   ;;
   restart)
     stop
