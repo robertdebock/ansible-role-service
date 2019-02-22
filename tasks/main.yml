@@ -37,7 +37,8 @@
     mode: "0750"
   when:
     - ansible_service_mgr == "sysvinit" or
-      ansible_service_mgr == "upstart"
+      ansible_service_mgr == "upstart" or
+      ansible_service_mgr == "openrc"
   with_items:
     - "{{ service_list }}"
   notify:
