@@ -18,7 +18,7 @@ start() {
   echo -n "Starting {{ item.name }}: "
 {% if item.type is defined and item.type != "simple" %}
   # Start the program in the foreground, when finished, continue.
-  ({% if item.user_name is defined %}su - {{ item.user_name ~ ' ' }}{% endif %}{{ item.start_command }})
+  {% if item.user_name is defined %}su - {{ item.user_name ~ ' ' }}{% endif %}{{ item.start_command }}
 {% else %}
   # Start the program in the background and continue.
   ({% if item.user_name is defined %}su - {{ item.user_name ~ ' ' }}{% endif %}{{ item.start_command }} &)
@@ -30,7 +30,8 @@ start() {
 
 stop() {
   echo -n "Shutting down {{ item.name }}: "
-  returncode=$({{ item.stop_command | default('killall -f {{ item.start_command }}') }})
+  {{ item.stop_command | default('killall -f {{ item.start_command }}') }}
+  returncode="${?}"
   rm -f /var/lock/subsys/{{ item.name }}
   return ${returncode}
 }
@@ -43,7 +44,7 @@ case "$1" in
     stop
   ;;
   status)
-    status {{ item.start_command }} > /dev/null 2>&1 || echo "not supported."
+    echo "Not supported."
   ;;
   restart)
     stop
