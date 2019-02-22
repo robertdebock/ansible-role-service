@@ -16,6 +16,9 @@ fi
 
 start() {
   echo -n "Starting {{ item.name }}: "
+{% if item.working_directory is defined %}
+  cd {{ item.working_directory }}
+{% endif %}
 {% if item.type is defined and item.type != "simple" %}
   # Start the program in the foreground, when finished, continue.
   {% if item.user_name is defined %}su - {{ item.user_name ~ ' ' }}{% endif %}{{ item.start_command }}
@@ -36,6 +39,16 @@ stop() {
   return ${returncode}
 }
 
+status() {
+{% if item.status_pattern is defined %}
+  pgrep -f {{ item.status_pattern }} > /dev/null 2>&1
+{% else %}
+  echo "Not implemented." ; exit 1
+{% endif %}
+  returncode="${?}"
+  return ${returncode}
+}
+
 case "$1" in
   start)
     start
@@ -44,17 +57,14 @@ case "$1" in
     stop
   ;;
   status)
-    echo "Not supported."
+    status
   ;;
   restart)
     stop
     start
   ;;
-  reload)
-    echo "not supported."
-  ;;
     *)
-  echo "Usage: <servicename> {start|stop|status|restart|reload}"
+  echo "Usage: <servicename> {start|stop|status|restart}"
   exit 1
   ;;
 esac

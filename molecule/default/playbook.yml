@@ -21,11 +21,16 @@
       - name: specific-user-group-service
         description: Specific User Group Service
         start_command: sleep 28800
+        user_name: root
+        group_name: root
       - name: specific-workingdirectory-service
         description: Specific WorkingDirectory Service
         start_command: sleep 57600
-        user_name: root
-        group_name: root
+        working_directory: /tmp
+      - name: specific-pattern-service
+        description: Specific Status Pattern Service
+        start_command: sleep 115200
+        status_pattern: 115200
 
   roles:
     - role: robertdebock.bootstrap
