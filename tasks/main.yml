@@ -16,6 +16,8 @@
       - item.start_command is defined
   with_items:
     - "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
 
 - name: configure systemd service
   template:
