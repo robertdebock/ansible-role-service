@@ -18,12 +18,12 @@ start() {
   echo -n "Starting {{ item.name }}: "
 {% if item.type is defined and item.type != "simple" %}
   # Start the program in the foreground, when finished, continue.
-  ({% if item.user_name is defined %}su - {{ item.user_name ~ ' ' }}{% endif %}{{ item.start_command }}
-  returncode="${?}"
+  ({% if item.user_name is defined %}su - {{ item.user_name ~ ' ' }}{% endif %}{{ item.start_command }})
 {% else %}
   # Start the program in the background and continue.
-  returncode=$({% if item.user_name is defined %}su - {{ item.user_name ~ ' ' }}{% endif %}{{ item.start_command }} &)
+  ({% if item.user_name is defined %}su - {{ item.user_name ~ ' ' }}{% endif %}{{ item.start_command }} &)
 {% endif %}
+  returncode="${?}"
   touch /var/lock/subsys/{{ item.name }}
   return ${returncode}
 }
