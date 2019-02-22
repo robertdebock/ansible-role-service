@@ -46,6 +46,11 @@ status() {
   echo "Not implemented." ; exit 1
 {% endif %}
   returncode="${?}"
+  if [ $returncode -gt 0 ] ; then
+    echo "{{ item.name }} is not running."
+  else
+    echo "{{ item.name }} is running."
+  fi
   return ${returncode}
 }
 
