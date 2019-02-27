@@ -2,6 +2,8 @@
 # vars file for service
 _service_required_packages:
   default: []
+  Archlinux:
+    - psmisc
   Fedora:
     - psmisc
 
