@@ -1,2 +1,8 @@
 ---
 # vars file for service
+_service_required_packages:
+  default: []
+  Fedora:
+    - psmisc
+
+service_required_packages: "{{ _service_required_packages[ansible_distribution] | default(_service_required_packages['default']) }}"

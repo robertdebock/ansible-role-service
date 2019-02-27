@@ -19,6 +19,14 @@
   loop_control:
     label: "{{ item.name }}"
 
+- name: install required packages
+  package:
+    name: "{{ service_required_packages }}"
+    state: "{{ service_package_state }}"
+  register: service_install_required_packages
+  until: service_install_required_packages is succeeded
+  retries: 3
+
 - name: configure systemd service
   template:
     src: "systemd.j2"
