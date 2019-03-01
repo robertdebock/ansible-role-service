@@ -10,8 +10,6 @@ _service_required_packages:
     - psmisc
   openSUSE Leap:
     - psmisc
-  openSUSE Tumbleweed:
-    - psmisc
   Ubuntu:
     - psmisc
 
