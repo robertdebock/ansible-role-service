@@ -77,6 +77,9 @@ These variables are set in `defaults/main.yml`:
 #   program itself forks, i.e. "nc -l 12345 &"
 # - working_directory: The directory to cd into before starting the service.
 
+# To update all packages installed by this roles, set `service_package_state` to `latest`.
+service_package_state: present
+
 # Some Docker containers do not allow managing services, rebooting and writing
 # to some locations in /etc. The role skips tasks that will typically fail in
 # Docker. With this parameter you can tell the role to -not- skip these tasks.
@@ -125,7 +128,6 @@ This role has been tested against the following distributions and Ansible versio
 |fedora-latest|yes|yes|yes*|
 |fedora-rawhide*|yes|yes|yes*|
 |opensuse-leap|yes|yes|yes*|
-|opensuse-tumbleweed|yes|yes|yes*|
 |ubuntu-devel*|yes|yes|yes*|
 |ubuntu-latest|yes|yes|yes*|
 |ubuntu-rolling|yes|yes|yes*|

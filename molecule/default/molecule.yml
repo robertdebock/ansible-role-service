@@ -32,8 +32,6 @@ platforms:
     image: fedora:rawhide
   - name: service-opensuse-leap
     image: opensuse:leap
-  - name: service-opensuse-tumbleweed
-    image: opensuse:tumbleweed
   - name: service-ubuntu-latest
     image: ubuntu:latest
   - name: service-ubuntu-rolling
