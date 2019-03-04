@@ -19,10 +19,11 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: test service_list start_command
+- name: test service_list absoule paths
   assert:
     that:
       - item.start_command is search('^/.*')
+      - item.working_directory is search('^/.*')
     msg: "Please specify the start_command as an absolute path."
   with_items:
     - "{{ service_list }}"
