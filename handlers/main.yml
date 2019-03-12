@@ -4,7 +4,7 @@
   systemd:
     daemon_reload: yes
   when:
-    - ansible_virtualization_type != "docker" or service_ignore_docker
+    - ansible_virtualization_type != "docker"
 
 - name: restart service
   service:
@@ -13,6 +13,6 @@
   with_items:
     - "{{ service_list }}"
   when:
-    - ansible_virtualization_type != "docker" or service_ignore_docker
+    - ansible_virtualization_type != "docker"
   loop_control:
     label: "{{ item.name }}"

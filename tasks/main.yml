@@ -22,7 +22,7 @@
 - name: install required packages
   package:
     name: "{{ service_required_packages }}"
-    state: "{{ service_package_state }}"
+    state: present
   register: service_install_required_packages
   until: service_install_required_packages is succeeded
   retries: 3
