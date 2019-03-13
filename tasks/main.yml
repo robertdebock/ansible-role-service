@@ -3,9 +3,6 @@
 - name: test veriables and environment
   assert:
     that:
-      - service_ignore_docker is defined
-      - service_ignore_docker or
-        not service_ignore_docker
       - service_list is defined
 
 - name: test service_list
