@@ -4,6 +4,7 @@ _service_required_packages:
   default: []
   Archlinux:
     - psmisc
+    - systemd
   Debian:
     - psmisc
   Fedora:

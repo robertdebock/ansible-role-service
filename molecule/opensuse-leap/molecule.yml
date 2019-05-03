@@ -11,6 +11,8 @@ platforms:
   - name: service-opensuse-leap
     image: opensuse:leap
     pre_build_image: yes
+    command: /sbin/init
+    privileged: yes
 provisioner:
   name: ansible
   playbooks:

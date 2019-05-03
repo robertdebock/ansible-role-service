@@ -11,6 +11,8 @@ platforms:
   - name: service-debian-latest
     image: debian:latest
     pre_build_image: yes
+    command: /sbin/init
+    privileged: yes
 provisioner:
   name: ansible
   playbooks:

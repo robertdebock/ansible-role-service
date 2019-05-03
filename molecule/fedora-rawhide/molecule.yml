@@ -11,6 +11,8 @@ platforms:
   - name: service-fedora-rawhide
     image: fedora:rawhide
     pre_build_image: yes
+    command: /sbin/init
+    privileged: yes
     registry:
       url: registry.fedoraproject.org
 provisioner:

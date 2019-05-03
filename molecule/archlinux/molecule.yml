@@ -11,6 +11,7 @@ platforms:
   - name: service-archlinux
     image: archlinux/base
     pre_build_image: yes
+    privileged: yes
 provisioner:
   name: ansible
   playbooks:

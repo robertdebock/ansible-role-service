@@ -29,7 +29,8 @@
     src: "systemd.j2"
     dest: "/etc/systemd/system/{{ item.name }}.service"
   when:
-    - ansible_service_mgr == "systemd"
+    - ansible_service_mgr == "systemd" or
+      ansible_service_mgr == "service"
   notify:
     - systemctl daemon-reload
   with_items:

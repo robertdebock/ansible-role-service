@@ -11,7 +11,8 @@ platforms:
   - name: service-alpine-latest
     image: alpine:latest
     pre_build_image: yes
-    command: sh -c "while true ; do sleep 1 ; done"
+    command: /sbin/init
+    privileged: yes
 provisioner:
   name: ansible
   playbooks:

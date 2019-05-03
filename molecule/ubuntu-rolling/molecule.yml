@@ -11,6 +11,8 @@ platforms:
   - name: service-ubuntu-rolling
     image: ubuntu:rolling
     pre_build_image: yes
+    command: /sbin/init
+    privileged: yes
 provisioner:
   name: ansible
   playbooks:

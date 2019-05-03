@@ -11,6 +11,8 @@ platforms:
   - name: service-centos-6
     image: centos:6
     pre_build_image: yes
+    command: /sbin/init
+    privileged: yes
 provisioner:
   name: ansible
   playbooks:

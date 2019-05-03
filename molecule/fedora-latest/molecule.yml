@@ -11,6 +11,8 @@ platforms:
   - name: service-fedora-latest
     image: fedora:latest
     pre_build_image: yes
+    command: /sbin/init
+    privileged: yes
 provisioner:
   name: ansible
   playbooks:

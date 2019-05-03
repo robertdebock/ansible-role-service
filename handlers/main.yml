@@ -4,7 +4,7 @@
   systemd:
     daemon_reload: yes
   when:
-    - ansible_virtualization_type != "docker"
+    - ansible_distribution != "Archlinux"
 
 - name: restart service
   service:
@@ -12,7 +12,7 @@
     state: restarted
   with_items:
     - "{{ service_list }}"
-  when:
-    - ansible_virtualization_type != "docker"
   loop_control:
     label: "{{ item.name }}"
+  when:
+    - ansible_distribution != "Archlinux"
