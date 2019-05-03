@@ -5,6 +5,8 @@ _service_required_packages:
   Archlinux:
     - psmisc
     - systemd
+  CentOS:
+    - psmisc
   Debian:
     - psmisc
   Fedora:
