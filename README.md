@@ -16,6 +16,33 @@ This example is taken from `molecule/default/playbook.yml`:
   become: yes
   gather_facts: yes
 
+  vars:
+    service_list:
+      - name: simple-service
+        description: Simple Service
+        start_command: /bin/sleep 3600
+      - name: forking-service
+        description: Forking Service
+        type: forking
+        start_command: "/bin/sleep 7200 &"
+      - name: specific-stop-service
+        description: Specific Stop Service
+        start_command: /bin/sleep 14400
+        stop_command: killall -f "sleep 1440"
+      - name: specific-user-group-service
+        description: Specific User Group Service
+        start_command: /bin/sleep 28800
+        user_name: root
+        group_name: root
+      - name: specific-workingdirectory-service
+        description: Specific WorkingDirectory Service
+        start_command: /bin/sleep 57600
+        working_directory: /tmp
+      - name: specific-pattern-service
+        description: Specific Status Pattern Service
+        start_command: /bin/sleep 115200
+        status_pattern: 115200
+
   roles:
     - robertdebock.service
 ```
@@ -28,33 +55,6 @@ The machine you are running this on, may need to be prepared. Tests have been do
   gather_facts: no
   become: yes
   serial: 30%
-
-  vars:
-    service_list:
-      - name: simple-service
-        description: Simple Service
-        start_command: /usr/bin/sleep 3600
-      - name: forking-service
-        description: Forking Service
-        type: forking
-        start_command: "/usr/bin/sleep 7200 &"
-      - name: specific-stop-service
-        description: Specific Stop Service
-        start_command: /usr/bin/sleep 14400
-        stop_command: killall -f "sleep 1440"
-      - name: specific-user-group-service
-        description: Specific User Group Service
-        start_command: /usr/bin/sleep 28800
-        user_name: root
-        group_name: root
-      - name: specific-workingdirectory-service
-        description: Specific WorkingDirectory Service
-        start_command: /usr/bin/sleep 57600
-        working_directory: /tmp
-      - name: specific-pattern-service
-        description: Specific Status Pattern Service
-        start_command: /usr/bin/sleep 115200
-        status_pattern: 115200
 
   roles:
     - role: robertdebock.bootstrap
