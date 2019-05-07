@@ -33,7 +33,7 @@ start() {
 
 stop() {
   echo -n "Shutting down {{ item.name }}: "
-  {{ item.stop_command | default('killall -f {{ item.start_command.split[0] }}') }}
+  {{ item.stop_command | default('killall {{ item.start_command.split[0] }}') }}
   returncode="${?}"
   rm -f /var/lock/subsys/{{ item.name }}
   return ${returncode}
