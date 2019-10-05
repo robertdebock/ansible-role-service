@@ -6,6 +6,9 @@ service
 
 Add custom services to your Linux system.
 
+<img src="https://img.shields.io/ansible/role/d/38040"/>
+<img src="https://img.shields.io/ansible/quality/38040"/>
+
 Example Playbook
 ----------------
 
@@ -103,6 +106,17 @@ The following roles can be installed to ensure all requirements are met, using `
 
 ```
 
+This role uses the following modules:
+```yaml
+---
+- meta
+- package
+- service
+- setup
+- systemd
+- template
+```
+
 Context
 -------
 
@@ -122,7 +136,7 @@ This role has been tested against the following distributions and Ansible versio
 |alpine-edge*|no|yes|yes*|
 |alpine-latest|no|yes|yes*|
 |archlinux|no|yes|yes*|
-|centos-6|no|yes|yes*|
+|centos-7|no|yes|yes*|
 |centos-latest|no|yes|yes*|
 |debian-stable|no|yes|yes*|
 |debian-unstable*|no|yes|yes*|
@@ -134,6 +148,9 @@ This role has been tested against the following distributions and Ansible versio
 |ubuntu-rolling|no|yes|yes*|
 
 A single star means the build may fail, it's marked as an experimental build.
+
+
+
 
 Testing
 -------
