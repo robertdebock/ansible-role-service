@@ -32,7 +32,11 @@ start() {
 
 stop() {
   echo -n "Shutting down {{ item.name }}: "
-  {{ item.stop_command | default('killall -f' item.start_command.split[0]) }}
+  {% if item.stop_command is defined %}
+  {{ item.stop_command }}
+  {% else %}
+  echo "Not implemented." ; exit 1
+  {% endif %}
   returncode="${?}"
   rm -f /var/lock/subsys/{{ item.name }}
   return ${returncode}
