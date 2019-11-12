@@ -9,7 +9,7 @@
       default: /usr/bin/sleep
       Alpine: /bin/sleep
 
-    service_test_command: "{{ _service_test_command[ansible_os_family] | default(['default']) }}"
+    service_test_command: "{{ _service_test_command[ansible_os_family] | default(_service_test_command['default']) }}"
 
     service_list:
       - name: simple-service
