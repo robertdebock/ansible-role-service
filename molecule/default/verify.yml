@@ -7,24 +7,19 @@
   vars:
     service_list:
       - name: simple-service
-      # Don't know how to make a simple forking service.
-      # - name: forking-service
-      - name: specific-stop-service
-      - name: specific-user-group-service
-      - name: specific-workingdirectory-service
-      - name: specific-pattern-service
 
   tasks:
-    - name: start {{ item.name }}
+    - name: start simple-service
       service:
-        name: "{{ item.name }}"
+        name: simple-service
         state: started
-      with_items:
-        - "{{ service_list }}"
 
-    - name: stop {{ item.name }}
+    - name: stop simple-service
       service:
-        name: "{{ item.name }}"
+        name: simple-service
         state: stopped
-      with_items:
-        - "{{ service_list }}"
+
+    - name: restart simple-service
+      service:
+        name: simple-service
+        state: restarted

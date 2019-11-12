@@ -3,12 +3,3 @@
 - name: systemctl daemon-reload
   systemd:
     daemon_reload: yes
-
-- name: restart service
-  service:
-    name: "{{ item.name }}"
-    state: restarted
-  with_items:
-    - "{{ service_list }}"
-  loop_control:
-    label: "{{ item.name }}"
