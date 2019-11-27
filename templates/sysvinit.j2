@@ -17,7 +17,7 @@ start() {
 {% if item.status_pattern is defined %}
   pgrep -f {{ item.status_pattern }} > /dev/null
 {% else %}
-  pgrep {{ item.start_command | regex_replace(' .*') }} > /dev/null
+  pgrep -f {{ item.start_command | regex_replace(' .*') }} > /dev/null
 {% endif %}
   returncode="${?}"
   if [ $returncode -gt 0 ] ; then
