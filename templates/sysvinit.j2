@@ -41,7 +41,7 @@ stop() {
 {% if item.status_pattern is defined %}
   pgrep -f {{ item.status_pattern }} > /dev/null
 {% else %}
-  pgrep {{ item.start_command | regex_replace(' .*') }} > /dev/null
+  pgrep -f {{ item.start_command | regex_replace(' .*') }} > /dev/null
 {% endif %}
   returncode="${?}"
   if [ $returncode -eq 0 ] ; then
@@ -49,7 +49,7 @@ stop() {
 {% if item.stop_command is defined %}
     {{ item.stop_command }}
 {% else %}
-    pkill {{ item.start_command | regex_replace(' .*') }}
+    pkill -f {{ item.start_command | regex_replace(' .*') }}
 {% endif %}
     returncode="${?}"
     rm -f /var/lock/subsys/{{ item.name }}
