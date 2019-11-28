@@ -33,7 +33,7 @@ start() {
     returncode="${?}"
     touch /var/lock/subsys/{{ item.name }}
   else
-    exit 1
+    echo "Already running."
   fi
 }
 
@@ -54,7 +54,7 @@ stop() {
     returncode="${?}"
     rm -f /var/lock/subsys/{{ item.name }}
   else
-    exit ${returncode}
+    echo "Already stopped."
   fi
 }
 
