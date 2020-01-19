@@ -36,6 +36,11 @@
         description: Specific Status Pattern Service
         start_command: "{{ service_test_command }} 115200"
         status_pattern: 115200
+      - name: variable-service
+        description: Service with environment variables
+        start_command: "{{ service_test_command }} ${time}"
+        environment_variables:
+          time: 230400
 
   roles:
     - ansible-role-service

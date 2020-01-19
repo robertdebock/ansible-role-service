@@ -13,6 +13,12 @@ if [ -f /etc/init.d/functions ] ; then
   . /etc/init.d/functions
 fi
 
+{% if environment_variables is defined and environment_variables is iterable %}
+{% for key, value in environment_variables %}
+export {{ key }}={{ value }}
+{% endfor %}
+{% endif %}
+
 start() {
 {% if item.status_pattern is defined %}
   pgrep -f {{ item.status_pattern }} > /dev/null

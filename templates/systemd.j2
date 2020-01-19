@@ -19,6 +19,11 @@ ExecStart={{ item.start_command }}
 {% if item.stop_command is defined %}
 ExecStop={{ item.stop_command }}
 {% endif %}
+{% if environment_variables is defined and environment_variables is iterable %}
+{% for key, value in environment_variables %}
+Environment={{ key }}={{ value }}
+{% endfor %}
+{% endif %}
 
 [Install]
 WantedBy=multi-user.target

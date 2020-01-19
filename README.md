@@ -51,6 +51,11 @@ This example is taken from `molecule/resources/playbook.yml` and is tested on ea
         description: Specific Status Pattern Service
         start_command: "{{ service_test_command }} 115200"
         status_pattern: 115200
+      - name: variable-service
+        description: Service with environment variables
+        start_command: "{{ service_test_command }} ${time}"
+        environment_variables:
+          time: 230400
 
   roles:
     - robertdebock.service
@@ -108,7 +113,7 @@ These variables are set in `defaults/main.yml`:
 ---
 # defaults file for service
 
-# status_list can contain a list of services to add to the system.
+# service_list can contain a list of services to add to the system.
 # The mandatory items for each item are:
 # - name: The (short) name of the service, i.e. "tomcat".
 # - description: A bit longer name, i.e. "Tomcat application server".
@@ -124,6 +129,10 @@ These variables are set in `defaults/main.yml`:
 #   program runs on the foreground, i.e. "nc -l 1234". Forking means the
 #   program itself forks, i.e. "nc -l 12345 &"
 # - working_directory: The directory to cd into before starting the service.
+# - environment_variables: A list for variables to set. for example:
+#   environments_variables:
+#     variable1: value1
+#     variable2: value2
 ```
 
 Requirements
