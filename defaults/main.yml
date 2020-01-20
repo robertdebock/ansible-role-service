@@ -18,6 +18,6 @@
 #   program itself forks, i.e. "nc -l 12345 &"
 # - working_directory: The directory to cd into before starting the service.
 # - environment_variables: A list for variables to set. for example:
-#   environments_variables:
+#   environment_variables:
 #     variable1: value1
 #     variable2: value2

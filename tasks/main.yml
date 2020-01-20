@@ -7,9 +7,8 @@
   register: service_install_required_packages
   until: service_install_required_packages is succeeded
   retries: 3
-
-- name: gather_facts
-  setup:
+  notify:
+    - gather facts
 
 - name: configure systemd service
   template:
