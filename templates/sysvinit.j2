@@ -13,7 +13,7 @@ if [ -f /etc/init.d/functions ] ; then
   . /etc/init.d/functions
 fi
 
-{% if environment_variables is defined and environment_variables is iterable %}
+{% if environment_variables is defined %}
 {% for key, value in environment_variables %}
 export {{ key }}={{ value }}
 {% endfor %}
