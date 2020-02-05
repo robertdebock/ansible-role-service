@@ -18,8 +18,7 @@
     - ansible_service_mgr == "systemd"
   notify:
     - systemctl daemon-reload
-  with_items:
-    - "{{ service_list }}"
+  loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
 
@@ -32,8 +31,7 @@
     - ansible_service_mgr == "sysvinit" or
       ansible_service_mgr == "upstart" or
       ansible_service_mgr == "openrc"
-  with_items:
-    - "{{ service_list }}"
+  loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
 
