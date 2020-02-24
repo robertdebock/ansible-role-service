@@ -73,6 +73,7 @@ status() {
   returncode="${?}"
   if [ $returncode -gt 0 ] ; then
     echo "{{ item.name }} is not running." ; exit ${returncode}
+    returncode=3
   else
     echo "{{ item.name }} is running." ; exit ${returncode}
   fi
