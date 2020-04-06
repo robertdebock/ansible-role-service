@@ -43,4 +43,4 @@
           time: 230400
 
   roles:
-    - ansible-role-service
+    - role: ansible-role-service

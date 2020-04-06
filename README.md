@@ -55,7 +55,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
           time: 230400
 
   roles:
-    - robertdebock.service
+    - role: robertdebock.service
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
