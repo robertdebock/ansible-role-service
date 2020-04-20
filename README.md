@@ -129,6 +129,9 @@ These variables are set in `defaults/main.yml`:
 #   environment_variables:
 #     variable1: value1
 #     variable2: value2
+# - after: Start after the mentioned service.
+# - restart_mode: The mode to use, for example "always".
+# - restart_seconds: The time to allow restart to finish.
 ```
 
 ## Requirements
