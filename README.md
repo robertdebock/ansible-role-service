@@ -2,9 +2,9 @@
 
 Add custom services to your Linux system.
 
-|Travis|GitHub|Quality|Downloads|
-|------|------|-------|---------|
-|[![travis](https://travis-ci.com/robertdebock/ansible-role-service.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-service)|[![github](https://github.com/robertdebock/ansible-role-service/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-service/actions)|[![quality](https://img.shields.io/ansible/quality/38040)](https://galaxy.ansible.com/robertdebock/service)|[![downloads](https://img.shields.io/ansible/role/d/38040)](https://galaxy.ansible.com/robertdebock/service)|
+|Travis|GitHub|Quality|Downloads|Version|
+|------|------|-------|---------|-------|
+|[![travis](https://travis-ci.com/robertdebock/ansible-role-service.svg?branch=master)](https://travis-ci.com/robertdebock/ansible-role-service)|[![github](https://github.com/robertdebock/ansible-role-service/workflows/Ansible%20Molecule/badge.svg)](https://github.com/robertdebock/ansible-role-service/actions)|[![quality](https://img.shields.io/ansible/quality/38040)](https://galaxy.ansible.com/robertdebock/service)|[![downloads](https://img.shields.io/ansible/role/d/38040)](https://galaxy.ansible.com/robertdebock/service)|[![Version](https://img.shields.io/github/release/robertdebock/ansible-role-service.svg)](https://github.com/robertdebock/ansible-role-service/releases/)|
 
 ## [Example Playbook](#example-playbook)
 
