@@ -32,7 +32,8 @@
 - name: test if status_pattern in service_list is set correctly
   assert:
     that:
-      - item.status_pattern | length > 0
+      - item.status_pattern | length > 0 or
+        item.status_pattern | int
   loop: "{{ service_list }}"
   when:
     - service_list is defined
