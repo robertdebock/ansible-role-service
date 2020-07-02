@@ -16,6 +16,7 @@
       - item.description | length > 0
       - item.start_command is defined
       - item.start_command | length > 0
+    quiet: yes
   loop: "{{ service_list }}"
   when:
     - service_list is defined
@@ -24,6 +25,7 @@
   assert:
     that:
       - item.stop_command | length > 0
+    quiet: yes
   loop: "{{ service_list }}"
   when:
     - service_list is defined
@@ -34,6 +36,7 @@
     that:
       - item.type | length > 0
       - item.type in ["forking", "simple"]
+    quiet: yes
   loop: "{{ service_list }}"
   when:
     - service_list is defined
@@ -43,6 +46,7 @@
   assert:
     that:
       - item.working_directory | length > 0
+    quiet: yes
   loop: "{{ service_list }}"
   when:
     - service_list is defined
@@ -53,6 +57,7 @@
     that:
       - item.environment_variables | length > 0
       - item.environment_variables is iterable
+    quiet: yes
   loop: "{{ service_list }}"
   when:
     - service_list is defined
@@ -62,6 +67,7 @@
   assert:
     that:
       - item.after | length > 0
+    quiet: yes
   loop: "{{ service_list }}"
   when:
     - service_list is defined
@@ -72,6 +78,7 @@
     that:
       - item.restart_mode | length > 0
       - item.restart_mode in ["no", "on-success", "on-failure", "on-abnormal", "on-watchdog", "on-abort", "always"]
+    quiet: yes
   loop: "{{ service_list }}"
   when:
     - service_list is defined
@@ -83,6 +90,7 @@
       - item.seconds | length > 0
       - item.seconds | int
       - item.seconds | int >= 0
+    quiet: yes
   loop: "{{ service_list }}"
   when:
     - service_list is defined
