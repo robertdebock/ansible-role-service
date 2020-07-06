@@ -1,5 +1,6 @@
 ---
 # vars file for service
+
 _service_required_packages:
   default: []
   Debian:
