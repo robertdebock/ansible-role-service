@@ -214,6 +214,11 @@ image="debian" tag="stable" tox
 
 Apache-2.0
 
+## [Contributors](#contributors)
+
+I'd like to thank everybody that made contributions to this repository. It motivates me, improves the code and is just fun to collaborate.
+
+- [githengi](https://github.com/githengi)
 
 ## [Author Information](#author-information)
 
