@@ -35,7 +35,7 @@
   assert:
     that:
       - item.type | length > 0
-      - item.type in ["forking", "simple"]
+      - item.type in ["forking", "oneshot", "simple"]
     quiet: yes
   loop: "{{ service_list }}"
   when:
