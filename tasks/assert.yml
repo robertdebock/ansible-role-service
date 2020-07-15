@@ -18,6 +18,8 @@
       - item.start_command | length > 0
     quiet: yes
   loop: "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - service_list is defined
 
@@ -27,6 +29,8 @@
       - item.stop_command | length > 0
     quiet: yes
   loop: "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - service_list is defined
     - item.stop_command is defined
@@ -38,6 +42,8 @@
       - item.type in ["forking", "oneshot", "simple"]
     quiet: yes
   loop: "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - service_list is defined
     - item.type is defined
@@ -48,6 +54,8 @@
       - item.working_directory | length > 0
     quiet: yes
   loop: "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - service_list is defined
     - item.working_directory is defined
@@ -59,6 +67,8 @@
       - item.environment_variables is iterable
     quiet: yes
   loop: "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - service_list is defined
     - item.environment_variables is defined
@@ -69,6 +79,8 @@
       - item.after | length > 0
     quiet: yes
   loop: "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - service_list is defined
     - item.after is defined
@@ -80,6 +92,8 @@
       - item.restart_mode in ["no", "on-success", "on-failure", "on-abnormal", "on-watchdog", "on-abort", "always"]
     quiet: yes
   loop: "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - service_list is defined
     - item.restart_mode is defined
@@ -92,6 +106,8 @@
       - item.seconds | int >= 0
     quiet: yes
   loop: "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
   when:
     - service_list is defined
     - item.seconds is defined
