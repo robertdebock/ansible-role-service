@@ -7,9 +7,6 @@
   package:
     name: "{{ service_required_packages }}"
     state: present
-  register: service_install_required_packages
-  until: service_install_required_packages is succeeded
-  retries: 3
   notify:
     - gather facts
 
