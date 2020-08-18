@@ -14,6 +14,7 @@
   template:
     src: "systemd.j2"
     dest: "/etc/systemd/system/{{ item.name }}.service"
+    mode: "0644"
   when:
     - ansible_service_mgr == "systemd"
   notify:
@@ -26,7 +27,7 @@
   template:
     src: "sysvinit.j2"
     dest: "/etc/init.d/{{ item.name }}"
-    mode: "755"
+    mode: "0755"
   when:
     - ansible_service_mgr == "sysvinit" or
       ansible_service_mgr == "upstart" or
