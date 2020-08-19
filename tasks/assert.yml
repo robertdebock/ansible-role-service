@@ -4,6 +4,7 @@
     that:
       - service_list | length > 0
       - service_list is iterable
+    quiet: yes
   when:
     - service_list is defined
 
