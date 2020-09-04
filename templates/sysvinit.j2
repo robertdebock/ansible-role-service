@@ -54,6 +54,8 @@ stop() {
     echo -n "Shutting down {{ item.name }}: "
 {% if item.stop_command is defined %}
     {{ item.stop_command }}
+{% elif item.status_pattern is defined %}
+    pkill -f {{ item.status_pattern }}
 {% else %}
     pkill -f {{ item.start_command | regex_replace(' .*') }}
 {% endif %}
