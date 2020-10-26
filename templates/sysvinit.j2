@@ -32,9 +32,9 @@ start() {
     cd {{ item.working_directory }}
 {% endif %}
 {% if item.type is defined and item.type != "simple" %}
-    {% if item.user_name is defined %}su -c {% endif %}"{{ item.start_command }}"{% if item.user_name is defined %} {{ item.user_name }}{% endif %}
+    {% if item.user_name is defined %}su - {{ item.user_name }} -c {% endif %}"{{ item.start_command }}"
 {% else %}
-    ({% if item.user_name is defined %}su -c {% endif %}"{{ item.start_command }}"{% if item.user_name is defined %} {{ item.user_name }}{% endif %} &)
+    ({% if item.user_name is defined %}su - {{ item.user_name }} -c {% endif %}"{{ item.start_command }}"&)
 {% endif %}
     returncode="${?}"
     touch /var/lock/subsys/{{ item.name }}
