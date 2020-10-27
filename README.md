@@ -20,42 +20,48 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
     _service_test_command:
       default: /usr/bin/sleep
       Alpine: /bin/sleep
-
     service_test_command: "{{ _service_test_command[ansible_os_family] | default(_service_test_command['default']) }}"
-
-    service_list:
-      - name: simple-service
-        description: Simple Service
-        start_command: "{{ service_test_command }} 3600"
-      - name: forking-service
-        description: Forking Service
-        type: forking
-        start_command: "{{ service_test_command }} 7200 &"
-      - name: specific-stop-service
-        description: Specific Stop Service
-        start_command: "{{ service_test_command }} 1440"
-        stop_command: killall -f "sleep 1440"
-      - name: specific-user-group-service
-        description: Specific User Group Service
-        start_command: "{{ service_test_command }} 28800"
-        user_name: root
-        group_name: root
-      - name: specific-workingdirectory-service
-        description: Specific WorkingDirectory Service
-        start_command: "{{ service_test_command }} 57600"
-        working_directory: /tmp
-      - name: specific-pattern-service
-        description: Specific Status Pattern Service
-        start_command: "{{ service_test_command }} 115200"
-        status_pattern: 115200
-      - name: variable-service
-        description: Service with environment variables
-        start_command: "{{ service_test_command }} ${time}"
-        environment_variables:
-          time: 230400
 
   roles:
     - role: robertdebock.service
+      service_list:
+        - name: simple-service
+          description: Simple Service
+          start_command: "{{ service_test_command }} 3600"
+        - name: forking-service
+          description: Forking Service
+          type: forking
+          start_command: "{{ service_test_command }} 7200 &"
+        - name: specific-stop-service
+          description: Specific Stop Service
+          start_command: "{{ service_test_command }} 1440"
+          stop_command: killall -f "sleep 1440"
+        - name: specific-user-group-service
+          description: Specific User Group Service
+          start_command: "{{ service_test_command }} 28800"
+          user_name: root
+          group_name: root
+        - name: specific-workingdirectory-service
+          description: Specific WorkingDirectory Service
+          start_command: "{{ service_test_command }} 57600"
+          working_directory: /tmp
+        - name: specific-pattern-service
+          description: Specific Status Pattern Service
+          start_command: "{{ service_test_command }} 115200"
+          status_pattern: 115200
+        - name: variable-service
+          description: Service with environment variables
+          start_command: "{{ service_test_command }} ${time}"
+          environment_variables:
+            time: 230400
+        - name: pidfile-service
+          description: Service with pidfile
+          start_command: "{{ service_test_command }} 460800"
+          pidfile: /var/run/pidfile-service.pid
+        - name: environmentfile-service
+          description: Service with environmentfile
+          start_command: "{{ service_test_command }} 921600"
+          environmentfile: /some/file
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
@@ -164,7 +170,7 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 |amazon|2018.03|
 |el|7, 8|
 |debian|buster, bullseye|
-|fedora|31, 32|
+|fedora|all|
 |opensuse|all|
 |ubuntu|focal, bionic, xenial|
 

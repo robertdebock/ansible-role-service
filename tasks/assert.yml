@@ -112,3 +112,27 @@
   when:
     - service_list is defined
     - item.seconds is defined
+
+- name: test if pidfile in service_list is set correctly
+  assert:
+    that:
+      - item.pidfile | length > 0
+    quiet: yes
+  loop: "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - service_list is defined
+    - item.pidfile is defined
+
+- name: test if environmentfile in service_list is set correctly
+  assert:
+    that:
+      - item.environmentfile | length > 0
+    quiet: yes
+  loop: "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - service_list is defined
+    - item.environmentfile is defined
