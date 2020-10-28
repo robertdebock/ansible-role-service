@@ -3,9 +3,9 @@
 
 _service_required_packages:
   default: []
-  Amazon-2018:
-    - psproc-ng
   Amazon-2:
+    - psproc-ng
+  Amazon-2018:
     - procps
   Debian:
     - psmisc
