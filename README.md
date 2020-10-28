@@ -20,7 +20,10 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
     _service_test_command:
       default: /usr/bin/sleep
       Alpine: /bin/sleep
-    service_test_command: "{{ _service_test_command[ansible_os_family] | default(_service_test_command['default']) }}"
+      Debian: /bin/sleep
+      Ubuntu-16: /bin/sleep
+      Ubuntu-18: /bin/sleep
+    service_test_command: "{{ _service_test_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_service_test_command[ansible_os_family] | default(_service_test_command['default'])) }}"  # noqa 204 Just long.
 
   roles:
     - role: robertdebock.service
@@ -178,7 +181,6 @@ This role has been tested on these [container images](https://hub.docker.com/u/r
 
 |container|tags|
 |---------|----|
-|alpine|all|
 |amazon|2018.03|
 |el|7, 8|
 |debian|buster, bullseye|
