@@ -36,7 +36,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         - name: specific-stop-service
           description: Specific Stop Service
           start_command: "{{ service_test_command }} 1440"
-          stop_command: killall -f "sleep 1440"
+          stop_command: /usr/bin/killall -f "sleep 1440"
         - name: specific-user-group-service
           description: Specific User Group Service
           start_command: "{{ service_test_command }} 28800"
