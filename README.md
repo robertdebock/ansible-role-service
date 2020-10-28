@@ -28,10 +28,11 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         - name: simple-service
           description: Simple Service
           start_command: "{{ service_test_command }} 3600"
-        - name: forking-service
-          description: Forking Service
-          type: forking
-          start_command: "{{ service_test_command }} 7200 &"
+        - name: stopped-service
+          description: Simple Service
+          start_command: "{{ service_test_command }} 3601"
+          state: stopped
+          enabled: no
         - name: specific-stop-service
           description: Specific Stop Service
           start_command: "{{ service_test_command }} 1440"
@@ -61,7 +62,7 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         - name: environmentfile-service
           description: Service with environmentfile
           start_command: "{{ service_test_command }} 921600"
-          environmentfile: /some/file
+          environmentfile: /environmentfile.txt
 ```
 
 The machine may need to be prepared using `molecule/resources/prepare.yml`:
@@ -75,6 +76,13 @@ The machine may need to be prepared using `molecule/resources/prepare.yml`:
 
   roles:
     - role: robertdebock.bootstrap
+
+  post_tasks:
+    - name: place /environmentfile.txt
+      copy:
+        content: "value=variable"
+        dest: /environmentfile.txt
+        mode: "0644"
 ```
 
 For verification `molecule/resources/verify.yml` runs after the role has been applied.
@@ -90,20 +98,24 @@ For verification `molecule/resources/verify.yml` runs after the role has been ap
       - name: simple-service
 
   tasks:
-    - name: start simple-service
+    - name: check simple-service
       service:
         name: simple-service
         state: started
+      check_mode: yes
+      register: service_check_simple_service
+      failed_when:
+        - service_check_simple_service is changed
 
-    - name: stop simple-service
+    - name: check stopped-service
       service:
-        name: simple-service
+        name: stopped-service
         state: stopped
-
-    - name: restart simple-service
-      service:
-        name: simple-service
-        state: restarted
+        enabled: no
+      check_mode: yes
+      register: service_check_stopped_service
+      failed_when:
+        - service_check_stopped_service is changed
 ```
 
 Also see a [full explanation and example](https://robertdebock.nl/how-to-use-these-roles.html) on how to use these roles.

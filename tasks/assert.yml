@@ -125,14 +125,27 @@
     - service_list is defined
     - item.pidfile is defined
 
-- name: test if environmentfile in service_list is set correctly
+- name: test if state in service_list is set correctly
   assert:
     that:
-      - item.environmentfile | length > 0
+      - item.state | length > 0
+      - item.state in ["reloaded", "restarted", "started", "stopped"]
     quiet: yes
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
   when:
     - service_list is defined
-    - item.environmentfile is defined
+    - item.state is defined
+
+- name: test if enabled in service_list is set correctly
+  assert:
+    that:
+      - item.enabled | type_debug == "bool"
+    quiet: yes
+  loop: "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
+  when:
+    - service_list is defined
+    - item.enabled is defined

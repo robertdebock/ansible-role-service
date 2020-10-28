@@ -37,5 +37,14 @@
   loop_control:
     label: "{{ item.name }}"
 
+- name: manage service
+  service:
+    name: "{{ item.name }}"
+    state: "{{ item.state | default('started') }}"
+    enabled: "{{ item.enabled | default(True) }}"
+  loop: "{{ service_list }}"
+  loop_control:
+    label: "{{ item.name }}"
+
 - name: flush handlers
   meta: flush_handlers

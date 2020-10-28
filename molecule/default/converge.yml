@@ -16,10 +16,11 @@
         - name: simple-service
           description: Simple Service
           start_command: "{{ service_test_command }} 3600"
-        - name: forking-service
-          description: Forking Service
-          type: forking
-          start_command: "{{ service_test_command }} 7200 &"
+        - name: stopped-service
+          description: Simple Service
+          start_command: "{{ service_test_command }} 3601"
+          state: stopped
+          enabled: no
         - name: specific-stop-service
           description: Specific Stop Service
           start_command: "{{ service_test_command }} 1440"
@@ -49,4 +50,4 @@
         - name: environmentfile-service
           description: Service with environmentfile
           start_command: "{{ service_test_command }} 921600"
-          environmentfile: /some/file
+          environmentfile: /environmentfile.txt
