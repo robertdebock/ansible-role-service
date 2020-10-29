@@ -31,6 +31,8 @@ This example is taken from `molecule/resources/converge.yml` and is tested on ea
         - name: simple-service
           description: Simple Service
           start_command: "{{ service_test_command }} 3600"
+          state: started
+          enabled: yes
         - name: stopped-service
           description: Simple Service
           start_command: "{{ service_test_command }} 3601"
@@ -105,6 +107,7 @@ For verification `molecule/resources/verify.yml` runs after the role has been ap
       service:
         name: simple-service
         state: started
+        enabled: yes
       check_mode: yes
       register: service_check_simple_service
       failed_when:

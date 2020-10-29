@@ -13,6 +13,7 @@
       service:
         name: simple-service
         state: started
+        enabled: yes
       check_mode: yes
       register: service_check_simple_service
       failed_when:

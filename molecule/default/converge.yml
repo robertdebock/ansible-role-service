@@ -19,6 +19,8 @@
         - name: simple-service
           description: Simple Service
           start_command: "{{ service_test_command }} 3600"
+          state: started
+          enabled: yes
         - name: stopped-service
           description: Simple Service
           start_command: "{{ service_test_command }} 3601"
