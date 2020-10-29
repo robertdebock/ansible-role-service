@@ -4,9 +4,8 @@
     that:
       - service_list | length > 0
       - service_list is iterable
+      - service_list is defined
     quiet: yes
-  when:
-    - service_list is defined
 
 - name: test if item in service_list is set correctly
   assert:
@@ -21,8 +20,6 @@
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
-  when:
-    - service_list is defined
 
 - name: test if stop_command in service_list is set correctly
   assert:
@@ -33,7 +30,6 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - service_list is defined
     - item.stop_command is defined
 
 - name: test if type in service_list is set correctly
@@ -46,7 +42,6 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - service_list is defined
     - item.type is defined
 
 - name: test if working_directory in service_list is set correctly
@@ -58,7 +53,6 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - service_list is defined
     - item.working_directory is defined
 
 - name: test if environment_variables in service_list is set correctly
@@ -71,7 +65,6 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - service_list is defined
     - item.environment_variables is defined
 
 - name: test if after in service_list is set correctly
@@ -83,7 +76,6 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - service_list is defined
     - item.after is defined
 
 - name: test if restart_mode in service_list is set correctly
@@ -96,7 +88,6 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - service_list is defined
     - item.restart_mode is defined
 
 - name: test if restart_seconds in service_list is set correctly
@@ -110,7 +101,6 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - service_list is defined
     - item.seconds is defined
 
 - name: test if pidfile in service_list is set correctly
@@ -122,7 +112,6 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - service_list is defined
     - item.pidfile is defined
 
 - name: test if state in service_list is set correctly
@@ -135,7 +124,6 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - service_list is defined
     - item.state is defined
 
 - name: test if enabled in service_list is set correctly
@@ -147,5 +135,4 @@
   loop_control:
     label: "{{ item.name }}"
   when:
-    - service_list is defined
     - item.enabled is defined
