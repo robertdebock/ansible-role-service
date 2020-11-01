@@ -45,6 +45,9 @@
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
+  when:
+    - item.state is defined or
+      item.enabled is defined
 
 - name: flush handlers
   meta: flush_handlers
