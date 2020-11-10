@@ -36,7 +36,7 @@
   assert:
     that:
       - item.type | length > 0
-      - item.type in ["forking", "oneshot", "simple"]
+      - item.type in [ "forking", "oneshot", "simple" ]
     quiet: yes
   loop: "{{ service_list }}"
   loop_control:
@@ -82,7 +82,7 @@
   assert:
     that:
       - item.restart_mode | length > 0
-      - item.restart_mode in ["no", "on-success", "on-failure", "on-abnormal", "on-watchdog", "on-abort", "always"]
+      - item.restart_mode in [ "no", "on-success", "on-failure", "on-abnormal", "on-watchdog", "on-abort", "always" ]
     quiet: yes
   loop: "{{ service_list }}"
   loop_control:
@@ -118,7 +118,7 @@
   assert:
     that:
       - item.state | length > 0
-      - item.state in ["reloaded", "restarted", "started", "stopped"]
+      - item.state in [ "reloaded", "restarted", "started", "stopped" ]
     quiet: yes
   loop: "{{ service_list }}"
   loop_control:
