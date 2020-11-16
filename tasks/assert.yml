@@ -17,16 +17,6 @@
   loop_control:
     label: "{{ item.name }}"
 
-- name: test if stop_command in service_list is set correctly
-  assert:
-    that:
-    quiet: yes
-  loop: "{{ service_list }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - item.stop_command is defined
-
 - name: test if type in service_list is set correctly
   assert:
     that:
@@ -38,16 +28,6 @@
   when:
     - item.type is defined
 
-- name: test if working_directory in service_list is set correctly
-  assert:
-    that:
-    quiet: yes
-  loop: "{{ service_list }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - item.working_directory is defined
-
 - name: test if environment_variables in service_list is set correctly
   assert:
     that:
@@ -58,16 +38,6 @@
     label: "{{ item.name }}"
   when:
     - item.environment_variables is defined
-
-- name: test if after in service_list is set correctly
-  assert:
-    that:
-    quiet: yes
-  loop: "{{ service_list }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - item.after is defined
 
 - name: test if restart_mode in service_list is set correctly
   assert:
@@ -91,16 +61,6 @@
     label: "{{ item.name }}"
   when:
     - item.seconds is defined
-
-- name: test if pidfile in service_list is set correctly
-  assert:
-    that:
-    quiet: yes
-  loop: "{{ service_list }}"
-  loop_control:
-    label: "{{ item.name }}"
-  when:
-    - item.pidfile is defined
 
 - name: test if state in service_list is set correctly
   assert:
