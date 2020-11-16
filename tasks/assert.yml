@@ -129,7 +129,7 @@
 - name: test if enabled in service_list is set correctly
   assert:
     that:
-      - item.enabled | type_debug == "bool"
+      - item.enabled is boolean
     quiet: yes
   loop: "{{ service_list }}"
   loop_control:
