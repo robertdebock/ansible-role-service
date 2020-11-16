@@ -84,7 +84,7 @@
   assert:
     that:
       - item.seconds is number
-      - item.seconds | int >= 0
+      - item.seconds >= 0
     quiet: yes
   loop: "{{ service_list }}"
   loop_control:
