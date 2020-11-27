@@ -3,16 +3,19 @@
 - name: test if service_list is set correctly
   assert:
     that:
-      - service_list is iterable
       - service_list is defined
+      - service_list is iterable
     quiet: yes
 
 - name: test if item in service_list is set correctly
   assert:
     that:
       - item.name is defined
+      - item.name is string
       - item.description is defined
+      - item.description is string
       - item.start_command is defined
+      - item.start_command is string
     quiet: yes
   loop: "{{ service_list }}"
   loop_control:
@@ -21,6 +24,7 @@
 - name: test if type in service_list is set correctly
   assert:
     that:
+      - item.type is string
       - item.type in [ "forking", "oneshot", "simple" ]
     quiet: yes
   loop: "{{ service_list }}"
@@ -43,6 +47,7 @@
 - name: test if restart_mode in service_list is set correctly
   assert:
     that:
+      - item.restart_mode is string
       - item.restart_mode in [ "no", "on-success", "on-failure", "on-abnormal", "on-watchdog", "on-abort", "always" ]
     quiet: yes
   loop: "{{ service_list }}"
@@ -66,6 +71,7 @@
 - name: test if state in service_list is set correctly
   assert:
     that:
+      - item.state is string
       - item.state in [ "reloaded", "restarted", "started", "stopped" ]
     quiet: yes
   loop: "{{ service_list }}"
