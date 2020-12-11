@@ -31,9 +31,7 @@
     dest: "/etc/init.d/{{ item.name }}"
     mode: "0755"
   when:
-    - ansible_service_mgr == "sysvinit" or
-      ansible_service_mgr == "upstart" or
-      ansible_service_mgr == "openrc"
+    - ansible_service_mgr in [ "sysvinit", "upstart", "openrc" ]
   loop: "{{ service_list }}"
   loop_control:
     label: "{{ item.name }}"
