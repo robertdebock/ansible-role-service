@@ -7,14 +7,14 @@
   delegate_to: localhost
 
 - name: install required packages
-  package:
+  ansible.builtin.package:
     name: "{{ service_required_packages }}"
     state: present
   notify:
     - gather facts
 
 - name: configure systemd service
-  template:
+  ansible.builtin.template:
     src: "systemd.j2"
     dest: "/etc/systemd/system/{{ item.name }}.service"
     mode: "0644"
@@ -27,7 +27,7 @@
     label: "{{ item.name }}"
 
 - name: configure sysvinit service
-  template:
+  ansible.builtin.template:
     src: "sysvinit.j2"
     dest: "/etc/init.d/{{ item.name }}"
     mode: "0755"
@@ -38,7 +38,7 @@
     label: "{{ item.name }}"
 
 - name: manage service
-  service:
+  ansible.builtin.service:
     name: "{{ item.name }}"
     state: "{{ item.state | default(omit) }}"
     enabled: "{{ item.enabled | default(omit) }}"
@@ -50,4 +50,4 @@
       item.enabled is defined
 
 - name: flush handlers
-  meta: flush_handlers
+  ansible.builtin.meta: flush_handlers
