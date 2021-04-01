@@ -84,7 +84,7 @@ The machine needs to be prepared in CI this is done using `molecule/resources/pr
 
   post_tasks:
     - name: place /environmentfile.txt
-      copy:
+      ansible.builtin.copy:
         content: "value=variable"
         dest: /environmentfile.txt
         mode: "0644"
