@@ -39,8 +39,6 @@ RestartSec={{ item.restart_seconds }}
 {% if item.pidfile is defined %}
 PIDFile={{ item.pidfile }}
 {% endif %}
-StandardOutput=syslog
-StandardError=syslog
 SyslogIdentifier={{ item.name }}
 
 [Install]

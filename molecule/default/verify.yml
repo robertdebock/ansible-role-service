@@ -28,3 +28,12 @@
       register: service_check_stopped_service
       failed_when:
         - service_check_stopped_service is changed
+
+    - name: get journalctl
+      ansible.builtin.command:
+        cmd: journalctl -t simple-service
+      register: journalctl_result
+
+    - name: check journalctl
+      assert:
+        that: "'Simple Service is running' in journalctl_result.stdout"
