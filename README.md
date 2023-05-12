@@ -77,15 +77,15 @@ The machine needs to be prepared. In CI this is done using [`molecule/default/pr
 ---
 - name: Prepare
   hosts: all
-  gather_facts: no
   become: yes
+  gather_facts: no
   serial: 30%
 
   roles:
     - role: robertdebock.bootstrap
 
   post_tasks:
-    - name: place /environmentfile.txt
+    - name: Place /environmentfile.txt
       ansible.builtin.copy:
         content: "value=variable"
         dest: /environmentfile.txt

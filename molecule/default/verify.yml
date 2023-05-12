@@ -6,10 +6,10 @@
 
   vars:
     service_list:
-      - name: simple-service
+      - name: Simple-service
 
   tasks:
-    - name: check simple-service
+    - name: Check simple-service
       ansible.builtin.service:
         name: simple-service
         state: started
@@ -19,7 +19,7 @@
       failed_when:
         - service_check_simple_service is changed
 
-    - name: check stopped-service
+    - name: Check stopped-service
       ansible.builtin.service:
         name: stopped-service
         state: stopped
