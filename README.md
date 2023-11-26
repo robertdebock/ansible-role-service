@@ -1,4 +1,4 @@
-# Ansible role [service](#service)
+# [Ansible role service](#service)
 
 Add custom services to your Linux system.
 
