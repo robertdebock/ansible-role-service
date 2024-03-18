@@ -1,8 +1,8 @@
 ---
 - name: Verify
   hosts: all
-  become: yes
-  gather_facts: no
+  become: true
+  gather_facts: false
 
   vars:
     service_list:
@@ -13,8 +13,8 @@
       ansible.builtin.service:
         name: simple-service
         state: started
-        enabled: yes
-      check_mode: yes
+        enabled: true
+      check_mode: true
       register: service_check_simple_service
       failed_when:
         - service_check_simple_service is changed
@@ -23,8 +23,8 @@
       ansible.builtin.service:
         name: stopped-service
         state: stopped
-        enabled: no
-      check_mode: yes
+        enabled: false
+      check_mode: true
       register: service_check_stopped_service
       failed_when:
         - service_check_stopped_service is changed
