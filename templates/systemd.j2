@@ -39,6 +39,7 @@ RestartSec={{ item.restart_seconds }}
 {% if item.pidfile is defined %}
 PIDFile={{ item.pidfile }}
 {% endif %}
+SyslogIdentifier={{ item.name }}
 
 [Install]
 WantedBy=multi-user.target
