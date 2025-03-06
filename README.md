@@ -27,7 +27,7 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
     service_test_command: "{{ _service_test_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_service_test_command[ansible_os_family] | default(_service_test_command['default'])) }}"  # noqa 204 Just long.
 
   roles:
-    - role: robertdebock.service
+    - role: ansible-role-service
       service_list:
         - name: simple-service
           description: Simple Service
