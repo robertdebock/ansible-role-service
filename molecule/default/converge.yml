@@ -56,3 +56,9 @@
           description: Service with environmentfile
           start_command: "{{ service_test_command }} 921600"
           environmentfile: /environmentfile.txt
+        - name: reload-service
+          description: Service with reload command
+          start_command: "{{ service_test_command }} 1843200"
+          reload_command: "kill -HUP $MAINPID"
+          state: started
+          enabled: true
