@@ -19,11 +19,11 @@ This example is taken from [`molecule/default/converge.yml`](https://github.com/
 
   vars:
     _service_test_command:
-      default: /usr/bin/sleep
-      Alpine: /bin/sleep
-      Debian: /bin/sleep
-      Ubuntu-16: /bin/sleep
-      Ubuntu-18: /bin/sleep
+      default: /usr/bin/echo "Simple-Service is running" && /usr/bin/sleep
+      Alpine: /usr/bin/echo "Simple-Service is running" && /bin/sleep
+      Debian: /usr/bin/echo "Simple-Service is running" && /bin/sleep
+      Ubuntu-16: /usr/bin/echo "Simple-Service is running" && /bin/sleep
+      Ubuntu-18: /usr/bin/echo "Simple-Service is running" && /bin/sleep
     service_test_command: "{{ _service_test_command[ansible_distribution ~ '-' ~ ansible_distribution_major_version] | default(_service_test_command[ansible_os_family] | default(_service_test_command['default'])) }}"  # noqa 204 Just long.
 
   roles:
